@@ -30,6 +30,18 @@
           <tr class="hascontextmenu">
             <td class="checkbox"><%= check_box_tag 'ids[]', issue.id, false, :id => nil %></td>
             <td class="subject"><%= link_to_issue(issue, :project => (@project != issue.project)) %></td>
+            <td>
+              <table class="progress progress-0" style="width: 10em;">
+                <tbody><tr>
+                  <% if issue.done_ratio > 0 then %>
+                    <td style="width: <%=issue.done_ratio%>%;" class="done"><%=issue.done_ratio%></td>
+                  <% end %>
+                  <% if 100-issue.done_ratio > 0 then %>
+                    <td style="width: <%=100-issue.done_ratio%>%;" class="todo"></td>
+                  <% end %>
+                </tr></tbody>
+              </table>
+            </td>
           </tr>
         <% end -%>
         </table>
